@@ -12,6 +12,7 @@ def send_service_status ():
     ip_publica = data.get("ip_publica",None)
     ip_privada =data.get("ip_privada", None)
     interfaces= data.get("interfaces",None)
+    
 
     registrar_device_status(device_id,ip_publica,ip_privada,interfaces)
 
