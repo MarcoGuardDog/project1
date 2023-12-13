@@ -14,7 +14,6 @@ def registrar_device_status(device_id,ip_publica,ip_privada,interfaces):
     ip_publica es un string   ej: "127.0.0.1"
     ip_privada es un string   ej: "198.0.0.100"
     interface es una lista de string  ej:["h1","h2"]
-
     """
     telemetry = Telemetry()
     telemetry.device_id=device_id
@@ -22,6 +21,3 @@ def registrar_device_status(device_id,ip_publica,ip_privada,interfaces):
     telemetry.ip_privada=ip_privada
     telemetry.interfaces=interfaces
     telemetry.save()
-
-
-
