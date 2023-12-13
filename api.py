@@ -10,8 +10,10 @@ def send_service_status ():
     data = request.get_json()
     device_id = data.get("device_id",None)
     ip_publica = data.get("ip_publica",None)
-    ip_privada =data.get("ip_privada", None)
-    interfaces= data.get("interfaces",None)
+    ip_privada = data.get("ip_privada", None)
+    interfaces = data.get("interfaces",None)
+    if device_id == None or ip_publica == None or ip_privada == None or interfaces == None :
+        return jsonify({"message : hay un error "})
 
     registrar_device_status(device_id,ip_publica,ip_privada,interfaces)
 
