@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request 
+from modulo_mongo import registrar_device_status
 
 
 app = Flask(__name__)
@@ -12,10 +13,11 @@ def send_service_status ():
     ip_privada =data.get("ip_privada", None)
     interfaces= data.get("interfaces",None)
 
+    registrar_device_status(device_id,ip_publica,ip_privada,interfaces)
+
     print(device_id,ip_publica,ip_privada,interfaces)
 
     return jsonify({"mensaje":"service se registro."})
  
 if __name__ == '__main__':
     app.run(debug=True)
-    
