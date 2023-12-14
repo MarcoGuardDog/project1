@@ -1,4 +1,6 @@
-from mongoengine import Document , StringField , IntField, connect, ListField
+from mongoengine import Document , StringField , connect, ListField
+import requests
+import socket
 
 connect(db="guardDog", host="mongodb://guardDog:zwF32WZt@34.132.52.46:27017/guardDog?connectTimeoutMS=10000&authSource=guardDog&directConnection=true", alias='default')
 
@@ -21,3 +23,17 @@ def registrar_device_status(device_id,ip_publica,ip_privada,interfaces):
     telemetry.ip_privada=ip_privada
     telemetry.interfaces=interfaces
     telemetry.save()
+def ip_publica():
+    respuesta = requests.get('https://api.ipify.org?format=json')
+    datos_ip = respuesta.json()
+    ip_publica = datos_ip['ip']
+    print(f'Tu dirección IP pública es: {ip_publica}')
+
+def ip_privada():
+    nombre= socket.gethostname()
+    ip_private = socket.gethostbyname(nombre)
+    print(f'Tu dirección IP privada es: {ip_private}')
+
+ip_privada()
+
+ip_publica()
