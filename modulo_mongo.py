@@ -1,6 +1,7 @@
 from mongoengine import Document , StringField , connect, ListField
 import requests
 import socket
+import ifcfg
 
 connect(db="guardDog", host="mongodb://guardDog:zwF32WZt@34.132.52.46:27017/guardDog?connectTimeoutMS=10000&authSource=guardDog&directConnection=true", alias='default')
 
@@ -28,6 +29,7 @@ def ip_publica():
     datos_ip = respuesta.json()
     ip_publica = datos_ip['ip']
     print(f'Tu dirección IP pública es: {ip_publica}')
+    
 
 def ip_privada():
     nombre= socket.gethostname()
