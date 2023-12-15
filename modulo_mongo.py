@@ -24,6 +24,12 @@ def registrar_device_status(device_id,ip_publica,ip_privada,interfaces):
     telemetry.ip_privada=ip_privada
     telemetry.interfaces=interfaces
     telemetry.save()
+
+def obtener_interfaces():
+    interfaces_info = ifcfg.interfaces()
+    return [interface for interface in interfaces_info]
+
+
 def ip_publica():
     respuesta = requests.get('https://api.ipify.org?format=json')
     datos_ip = respuesta.json()
@@ -35,6 +41,16 @@ def ip_privada():
     nombre= socket.gethostname()
     ip_private = socket.gethostbyname(nombre)
     print(f'Tu dirección IP privada es: {ip_private}')
+
+
+def obtener_interfaces():
+    interfaces_info = ifcfg.interfaces()
+    return [interface for interface in interfaces_info]
+
+interfaces = obtener_interfaces()
+print("Información de las Interfaces de Red:")
+for interface in interfaces:
+    print(interface)
 
 ip_privada()
 
